@@ -5,6 +5,8 @@ capybara-*.html
 
 # Ignore bundler config.
 /.bundle
+/vendor/bundle
+/vendor/cache
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -33,11 +35,6 @@ capybara-*.html
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-
-## Environment normalization:
-/.bundle
-/vendor/bundle
-/vendor/cache
 
 # Ignore node_modules
 node_modules/
