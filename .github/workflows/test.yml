@@ -7,7 +7,9 @@
 name: "Ruby on Rails CI"
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - 'i4-automatic-rspec-run-by-github-actions'
   pull_request:
     branches: [ main ]
 jobs:
