@@ -17,23 +17,37 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mysql:
-        image: mysql:5.6
+        image: mysql:5.7
         ports:
           - 3306:3306
         env:
           MYSQL_ROOT_PASSWORD: root
-
-    env:
-      RAILS_ENV: test
-      DATABASE_URL: "localhost:3306"
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       # Add or replace dependency steps here
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@8f312efe1262fb463d906e9bf040319394c18d3e # v1.92
         with:
           bundler-cache: true
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Bundler and gem install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3 --path vendor/bundle
+
+      - name: Yarn install
+        run: yarn install --check-files
+
       # Add or replace database setup steps here
       - name: Setup Database
         env:
@@ -42,6 +56,7 @@ jobs:
           cp config/database.yml.ci config/database.yml
           ./bin/rails db:create
           ./bin/rails db:migrate
+
       # Add or replace test runners here
       - name: Run tests
         run: bundle exec rspec
