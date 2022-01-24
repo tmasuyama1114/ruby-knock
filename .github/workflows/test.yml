@@ -53,6 +53,7 @@ jobs:
         env:
           RAILS_ENV: test
         run: |
+          sudo /etc/init.d/mysql start
           cp config/database.yml.ci config/database.yml
           ./bin/rails db:create
           ./bin/rails db:migrate
