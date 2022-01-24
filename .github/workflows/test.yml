@@ -9,7 +9,7 @@ on:
   push:
     branches:
       - main
-      - 'origin/i4-automatic-rspec-run-by-github-actions'
+      - 'i4-automatic-rspec-run-by-github-actions'
   pull_request:
     branches: [ main ]
 jobs:
