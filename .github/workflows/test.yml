@@ -66,11 +66,11 @@ jobs:
       #-- Slack通知 --#
       # 成功
       - name: Slack Notification on Success
-      if: ${{ success() }}
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_TITLE: Deploy Success
-        SLACK_COLOR: good
+        if: ${{ success() }}
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_TITLE: Deploy Success
+          SLACK_COLOR: good
 
       # 失敗
       - name: Slack Notification on Failure
