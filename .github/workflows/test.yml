@@ -63,6 +63,23 @@ jobs:
       - name: Run tests
         run: bundle exec rspec
 
+      #-- Slack通知 --#
+      # 成功
+      - name: Slack Notification on Success
+      if: ${{ success() }}
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_TITLE: Deploy Success
+        SLACK_COLOR: good
+
+      # 失敗
+      - name: Slack Notification on Failure
+        if: ${{ failure() }}
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_TITLE: Deploy Failure
+          SLACK_COLOR: danger
+
   lint:
     runs-on: ubuntu-latest
     steps:
