@@ -71,14 +71,13 @@ jobs:
         env:
           SLACK_TITLE: Test Success
           SLACK_COLOR: good
-          env:
-            SLACK_CHANNEL: general
-            SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
-            SLACK_ICON: https://github.com/rtCamp.png?size=48
-            SLACK_MESSAGE: 'Post Content :rocket:'
-            SLACK_TITLE: Post Title
-            SLACK_USERNAME: rtCamp
-            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: general
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_MESSAGE: 'Post Content :rocket:'
+          SLACK_TITLE: Post Title
+          SLACK_USERNAME: rtCamp
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
       # 失敗
       - name: Slack Notification on Failure
