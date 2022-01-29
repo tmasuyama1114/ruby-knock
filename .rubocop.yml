@@ -6,7 +6,7 @@ require:
 AllCops:
 #  DisabledByDefault: true
   Exclude:
-    - 'gems/**/*'
+    - .bundle
   NewCops: enable
 
 Bundler:
