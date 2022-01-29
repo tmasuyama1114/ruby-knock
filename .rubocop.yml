@@ -6,7 +6,7 @@ require:
 AllCops:
 #  DisabledByDefault: true
   Exclude:
-    - .bundle
+    - 'vendor/**/*'
   NewCops: enable
 
 Bundler:
