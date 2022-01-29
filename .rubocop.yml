@@ -1,6 +1,31 @@
-Style/Documentation:
-  Enabled: false
+require:
+  - rubocop-performance
+  - rubocop-rubycw
+  - rubocop-rspec
 
 AllCops:
+#  DisabledByDefault: true
+  Exclude:
+    - 'gems/**/*'
   NewCops: enable
-  SuggestExtensions: false
+
+Bundler:
+  Enabled: true
+
+Gemspec:
+  Enabled: true
+
+Lint:
+  Enabled: true
+
+Performance:
+  Enabled: true
+
+Rubycw:
+  Enabled: true
+
+Security:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
