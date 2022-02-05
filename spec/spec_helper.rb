@@ -1,3 +1,26 @@
+require 'simplecov'
+
+# minimum_coverage、minimum_coverage_by_file はオプショナルです。
+# - カバレッジが90%未満の場合、non-zero exit する（CircleCI上の場合、ジョブが失敗する）。
+SimpleCov.minimum_coverage 90
+# or
+# - カバレッジが80%未満のファイルがあった場合、non-zero exit する（同上）。
+SimpleCov.minimum_coverage_by_file 80
+
+SimpleCov.start do                                     # 最低限、この行のみ必要。ブロックの中はオプション。
+  add_filter '/spec/'                                  # /spec/ が含まれるファイルは除外する。
+  add_filter do |source_file|
+    source_file.lines.count < 5                        # 行数が 5行未満のファイルは除外する。
+  end
+
+  enable_coverage :branch                              # https://github.com/colszowka/simplecov#branch-coverage-ruby--25
+
+  add_group 'Models', 'app/models'                     # 以降の設定で、グルーピングして結果を出力することが出来るようになります。
+  add_group 'Services', 'app/services'                 # この設定をした場合も、All Files も含まれます。
+  add_group 'Controllers (api)', 'app/controllers/api' # ここに含まれないものは Ungrouped として別タブで表示されます。
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Helpers', 'app/helpers'
+end
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
