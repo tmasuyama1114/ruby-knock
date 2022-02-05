@@ -25,7 +25,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
-  gem 'simplecov'
 end
 
 group :development do
@@ -43,6 +42,7 @@ end
 group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
+  gem 'simplecov', require: false
   gem 'webdrivers'
   gem 'webmock'
 end
