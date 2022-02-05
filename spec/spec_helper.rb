@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'simplecov'
 
 # minimum_coverage、minimum_coverage_by_file はオプショナルです。
