@@ -61,15 +61,23 @@ jobs:
 
       # Add or replace test runners here
       - name: Run tests
-        run: COVERAGE=true bundle exec rspec
-        
-      - name: Upload coverage results
-        uses: actions/upload-artifact@master
-        if: always()
-        with:
-          name: coverage-report
-          path: coverage
+        run: bundle exec rspec
 
+      - name: Simplecov Report
+        uses: aki77/simplecov-report-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # 以下はデフォルト設定
+          # resultPath: coverage/.last_run.json
+          # failedThreshold: 90
+
+      # テストカバレッジの詳細を確認したい時の為
+      - name: Archive coverage artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: coverage
+        if: always()
       #-- Slack通知 --#
       # 成功
       - name: Slack Notification on Success
