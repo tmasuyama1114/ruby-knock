@@ -61,7 +61,14 @@ jobs:
 
       # Add or replace test runners here
       - name: Run tests
-        run: bundle exec rspec
+        run: COVERAGE=true bundle exec rspec
+        
+      - name: Upload coverage results
+        uses: actions/upload-artifact@master
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage
 
       #-- Slack通知 --#
       # 成功
