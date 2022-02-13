@@ -1,25 +1,30 @@
 const path = require('path')
+const glob = require('glob')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 
+let entries = {}
+glob.sync('./frontend/pages/**/*.js').map(function(file) {
+    let name = file.split('/')[4].split('.')[0]
+    entries[name] = file
+})
+
 module.exports = (env, argv) => {
     const IS_DEV = argv.mode === 'development'
 
     return {
-        entry: {
-            main: './frontend/application.js'
-        },
-        // devtool: IS_DEV ? 'source-map' : 'none',  // HMRが重くなる原因なので外した方がいい。
+        entry: entries,
+        // devtool: IS_DEV ? 'source-map' : 'none',
         output: {
-            filename: 'javascripts/bundle/[name]-[hash].js',
-            path: path.resolve(__dirname, 'app/assets')
+            filename: 'javascripts/[name]-[hash].js',
+            path: path.resolve(__dirname, 'public/assets')
         },
         plugins: [
             new VueLoaderPlugin(),
             new MiniCssExtractPlugin({
-                filename: 'stylesheets/bundle/[name]-[hash].css'
+                filename: 'stylesheets/[name]-[hash].css'
             }),
             new webpack.HotModuleReplacementPlugin(),
             new ManifestPlugin({
@@ -33,7 +38,17 @@ module.exports = (env, argv) => {
                     exclude: /node_modules/,
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env']
+                        presets: [
+                            [
+                                '@babel/preset-env',
+                                {
+                                    targets: {
+                                        ie: 11
+                                    },
+                                    useBuiltIns: 'usage'
+                                }
+                            ]
+                        ]
                     }
                 },
                 {
@@ -50,10 +65,7 @@ module.exports = (env, argv) => {
                         {
                             loader: MiniCssExtractPlugin.loader,
                             options: {
-                                publicPath: path.resolve(
-                                    __dirname,
-                                    'app/assets/stylesheets/bundle'
-                                )
+                                publicPath: path.resolve(__dirname, 'public/assets/stylesheets')
                             }
                         },
                         'css-loader',
@@ -65,9 +77,9 @@ module.exports = (env, argv) => {
                     loader: 'file-loader',
                     options: {
                         name: '[name]-[hash].[ext]',
-                        outputPath: 'images/bundle',
+                        outputPath: 'images',
                         publicPath: function(path) {
-                            return 'images/bundle/' + path
+                            return 'images/' + path
                         }
                     }
                 }
@@ -90,15 +102,6 @@ module.exports = (env, argv) => {
                     }
                 }
             }
-        },
-        devServer: {
-            host: 'localhost',
-            port: 3035,
-            publicPath: 'http://localhost:3035/app/assets/',
-            contentBase: path.resolve(__dirname, 'app/assets'),
-            hot: true,
-            disableHostCheck: true,
-            historyApiFallback: true
         }
     }
 }
