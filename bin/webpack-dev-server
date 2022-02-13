@@ -1,3 +1,2 @@
 #!/bin/sh
-yarn run build:dev &&
 yarn run webpack-dev-server --mode development
