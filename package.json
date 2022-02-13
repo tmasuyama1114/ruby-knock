@@ -11,6 +11,7 @@
     "babel-loader": "^8.2.3",
     "prettier": "^2.5.1",
     "prettier-webpack-plugin": "^1.2.0",
+    "turbolinks": "^5.2.0",
     "url-loader": "^4.1.1",
     "vue": "^3.2.30",
     "vue-loader": "^17.0.0",
