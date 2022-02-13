@@ -1,8 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { VueLoaderPlugin } = require('vue-loader')
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
 
 module.exports = (env, argv) => {
     const IS_DEV = argv.mode === 'development'
@@ -21,7 +21,8 @@ module.exports = (env, argv) => {
             new MiniCssExtractPlugin({
                 filename: 'stylesheets/bundle/[name]-[hash].css'
             }),
-            new WebpackManifestPlugin({
+            new webpack.HotModuleReplacementPlugin(),
+            new ManifestPlugin({
                 writeToFileEmit: true
             })
         ],
@@ -93,13 +94,11 @@ module.exports = (env, argv) => {
         devServer: {
             host: 'localhost',
             port: 3035,
-            hot: 'only',
-            allowedHosts: "all",
-            historyApiFallback: true,
-            static: {
-                directory: path.resolve(__dirname, 'app/assets'),
-                publicPath: 'http://localhost:3035/app/assets/',
-            }
+            publicPath: 'http://localhost:3035/app/assets/',
+            contentBase: path.resolve(__dirname, 'app/assets'),
+            hot: true,
+            disableHostCheck: true,
+            historyApiFallback: true
         }
     }
 }
