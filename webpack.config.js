@@ -14,7 +14,7 @@ module.exports = (env, argv) => {
         // devtool: IS_DEV ? 'source-map' : 'none',  // HMRが重くなる原因なので外した方がいい。
         output: {
             filename: 'javascripts/bundle/[name]-[hash].js',
-            path: path.resolve(__dirname, 'public/assets')
+            path: path.resolve(__dirname, 'app/assets')
         },
         plugins: [
             new VueLoaderPlugin(),
@@ -51,7 +51,7 @@ module.exports = (env, argv) => {
                             options: {
                                 publicPath: path.resolve(
                                     __dirname,
-                                    'public/assets/stylesheets/bundle'
+                                    'app/assets/stylesheets/bundle'
                                 )
                             }
                         },
@@ -97,8 +97,8 @@ module.exports = (env, argv) => {
             allowedHosts: "all",
             historyApiFallback: true,
             static: {
-                directory: path.resolve(__dirname, 'public/assets'),
-                publicPath: 'http://localhost:3035/public/assets/',
+                directory: path.resolve(__dirname, 'app/assets'),
+                publicPath: 'http://localhost:3035/app/assets/',
             }
         }
     }
