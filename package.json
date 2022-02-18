@@ -5,12 +5,13 @@
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "5.4.3",
     "@vue/compiler-sfc": "^3.2.28",
     "turbolinks": "^5.2.0",
     "vue": "^3.2.28",
     "vue-loader": "^17.0.0",
-    "webpack": "^5.68.0",
-    "webpack-cli": "^4.9.2"
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
   },
   "version": "0.1.0",
   "devDependencies": {
