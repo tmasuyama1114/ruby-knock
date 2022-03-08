@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :question do
-    content { 'MyText' }
+    content { 'てすと' }
   end
 end
