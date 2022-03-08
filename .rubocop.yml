@@ -9,6 +9,9 @@ AllCops:
     - 'vendor/**/*'
   NewCops: enable
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Bundler:
   Enabled: true
 
