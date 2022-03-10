@@ -1,5 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Question, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'バリデーション' do
+    subject { question.valid? }
+
+    let(:text) { 'てすと' }
+    let(:question) { described_class.new(content: text) }
+
+    it { expect(subject).to eq(true) }
+
+    context 'contentがnilの場合' do
+      let(:text) { nil }
+
+      it { expect(subject).to eq(false) }
+    end
+  end
 end
