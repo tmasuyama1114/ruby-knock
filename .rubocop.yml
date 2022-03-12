@@ -32,3 +32,6 @@ Security:
 
 Style/Documentation:
   Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
