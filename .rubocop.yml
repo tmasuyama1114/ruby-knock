@@ -9,6 +9,9 @@ AllCops:
     - 'vendor/**/*'
   NewCops: enable
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Bundler:
   Enabled: true
 
@@ -28,4 +31,7 @@ Security:
   Enabled: true
 
 Style/Documentation:
+  Enabled: false
+
+RSpec/NamedSubject:
   Enabled: false
