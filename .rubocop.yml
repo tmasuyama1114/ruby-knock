@@ -35,3 +35,7 @@ Style/Documentation:
 
 RSpec/NamedSubject:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Guardfile'
