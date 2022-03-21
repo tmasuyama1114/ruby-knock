@@ -6,7 +6,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.1'
 
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'brakeman'
 gem 'bundler-audit'
 gem 'jbuilder', '~> 2.7'
 gem 'mysql2', '~> 0.5'
@@ -17,6 +16,7 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 
 group :development, :test do
+  gem 'brakeman'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot'
   gem 'factory_bot_rails'
@@ -25,7 +25,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
-  gem 'brakeman'
 end
 
 group :development do
